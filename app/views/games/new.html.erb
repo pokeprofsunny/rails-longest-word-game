@@ -1,0 +1,20 @@
+<h1>New Game</h1>
+
+<!-- Letters Grid -->
+<p>Here are your letters:</p>
+<ul>
+  <% @letters.each do |letter| %>
+    <li><%= letter %></li>
+  <% end %>
+</ul>
+
+<!-- Submission Form -->
+<form action="/score" method="post" data-turbo="false">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letters, @letters.join(',') %>
+
+  <label for="word">Your word:</label>
+  <input type="text" name="word" id="word" placeholder="Enter a word" required>
+
+  <input type="submit" value="Submit">
+</form>
